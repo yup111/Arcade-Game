@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effective JavaScript: Frogger</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="css/font.css">
+</head>
+<body>
+    <script src="js/resources.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/engine.js"></script>
+
+    <header>
+        <img class="image-responsive" src="images/logo.png">
+        <a class="js-toggle-music js-toggle-music on">Music on</a>
+        <a class="js-toggle-music js-toggle-music off"> Music off</a>
+    </header>
+
+    <footer>
+        <a id="howToOpen" class="how-to-link">How to play</a>
+    </footer>
+
+    <div id="startScreen" class="start-screen overlay">
+        <div class="content">
+            <img class="image-responsive" src="images/logo.png">
+                <a id="playGame" class="button">Play Now!</a>
+        </div>
+        <div class="grass"></div>
+    </div>
+
+    <div id="howTo" class="how-to overlay hidden">
+            <div class="content">
+            <h2 class="heading">How to Play</h2>
+                <p>Press the up, down, left and right arrow keys on your keyboard to move the player. Do your best to get to the other side of the
+                road without being taken down by a bug!</p>
+                <p>You have 3 lives. Clearing a level is worth 600 points, and a gem of any color is worth 300.</p>
+                <p>Go get em!</p>
+                <a id="howToClose" class="button">Got it!</a>
+            </div>
+    </div>
+
+    <div id="collision" class="collision overlay hidden"></div>
+
+    <div id="gameOver" class="game-over overlay hidden">
+        <div class="content">
+                <h2 class="heading">Game Over</h2>
+                <div class="final-score">
+                    Final Score: <span id="score"></span>
+                </div>
+                <a id="playAgain" class="button">Play Again</a>
+                <img class="responsive" src="images/char-boy-dead.png">
+            </div>
+    </div>
+</body>
+</html>
