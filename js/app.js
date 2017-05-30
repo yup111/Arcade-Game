@@ -2,12 +2,12 @@
 var allEnemies = [];
 
 // Gems Array.
-
+var paused = true;
 
 // Pause the game by default to prevent the player moving around
 // when arrow keys are pressed. Set to false when the start or
 // game over screens are hidden from view
-
+var paused = true;
 
 var constants = {
     // Default canvas text font family
@@ -40,7 +40,14 @@ var constants = {
         RIGHT_BOUNDARY : 600,
         // Bottom canvas boundary
         BOTTOM_BOUNDARY : 470
-}
+};
+
+$(document).ready(function() {
+    $("#playGame").click(function() {
+        $("#startScreen").fadeOut('fast');
+        paused = false;
+    });
+});
 
 function setRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -129,13 +136,37 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-    continue;
+    // continue;
+    if(key === 'left' && this.x != constants.LEFT_BOUNDARY) {
+                this.x = this.xNow + -constants.PLAYER_MOVEMENT;
+        }
+        /* If the up arrow key is pressed and the 
+         * player is within the top boundary of the
+         * canvas, allow the player to move upwards.
+         */
+        if(key === 'up' && this.y != constants.TOP_BOUNDARY) {
+                this.y = this.yNow + -constants.PLAYER_MOVEMENT;
+        }
+        /* If the right arrow key is pressed and the 
+         * player is within the right boundary of the
+         * canvas, allow the player to move right.
+         */
+        if(key === 'right' && this.x != constants.RIGHT_BOUNDARY) {
+                this.x = this.xNow + constants.PLAYER_MOVEMENT;
+        }
+        /* If the down arrow key is pressed and the 
+         * player is within the bottom boundary of the
+         * canvas, allow the player to move down.
+         */
+        if(key === 'down' && this.y != constants.BOTTOM_BOUNDARY) {
+                this.y = this.yNow + constants.PLAYER_MOVEMENT;
+        }
 }
 // 现在实例化你的所有对象
 // 把所有敌人的对象都放进一个叫 allEnemies 的数组里面
 // 把玩家对象放进一个叫 player 的变量里面
 
-
+var player = new Player();
 // 这段代码监听游戏玩家的键盘点击事件并且代表将按键的关键数字送到 Play.handleInput()
 // 方法里面。你不需要再更改这段代码了。
 document.addEventListener('keyup', function(e) {
